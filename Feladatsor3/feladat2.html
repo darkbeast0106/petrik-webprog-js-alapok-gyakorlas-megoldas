@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladat</title>
+</head>
+
+<body>
+    <h2>Háromszög kerület számítás</h2>
+    <div>
+        <label for="a_oldal">a oldal:</label>
+        <input type="number" name="a_oldal" id="a_oldal" placeholder="a">
+    </div>
+    <div>
+        <label for="b_oldal">b oldal:</label>
+        <input type="number" name="b_oldal" id="b_oldal" placeholder="b">
+    </div>
+    <div>
+        <label for="c_oldal">c oldal:</label>
+        <input type="number" name="c_oldal" id="c_oldal" placeholder="c">
+    </div>
+    <button id="szamol">Számol</button>
+
+    <p id="eredmeny"></p>
+
+    <script>
+        const szamol = document.getElementById('szamol');
+        szamol.addEventListener('click', () => {
+            const a_oldal = document.getElementById('a_oldal');
+            const b_oldal = document.getElementById('b_oldal');
+            const c_oldal = document.getElementById('c_oldal');
+            const a = parseFloat(a_oldal.value);
+            const b = parseFloat(b_oldal.value);
+            const c = parseFloat(c_oldal.value);
+            const kerulet = a + b + c;
+            const s = kerulet / 2;
+            const terulet = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+            const eredmeny = document.getElementById('eredmeny');
+            eredmeny.innerHTML = `a: ${a}, b: ${b}, c: ${c}, kerulet: ${kerulet}, terulet: ${terulet}, `;
+        })
+    </script>
+</body>
+
+</html>

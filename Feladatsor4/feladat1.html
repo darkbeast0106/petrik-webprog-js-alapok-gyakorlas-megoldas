@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladat</title>
+</head>
+
+<body>
+    <form name="szoveg_urlap">        
+        <div>
+            <label for="szoveg">Szöveg:</label>
+            <input type="text" name="szoveg" id="szoveg" placeholder="Szöveg">
+        </div>
+        <div>
+            <input type="radio" name="tipus" id="kisbetus" value="kisbetus">
+            <label for="kisbetus">Kisbetűs</label>
+            <input type="radio" name="tipus" id="nagybetus" value="nagybetus">
+            <label for="nagybetus">Nagybetűs</label>
+        </div>
+    </form>
+    <button onclick="atalakitas();">Átalakítás</button>
+    <p id="eredmeny"></p>
+    <script>
+        const atalakitas = () => {
+            const szoveg = document.forms.szoveg_urlap.szoveg.value;
+            const tipus = document.forms.szoveg_urlap.tipus.value;
+            if (szoveg.length == 0) {
+                alert("Adjon meg egy szöveget");
+                return; // logikai változó létrehozása és azzal történő ellenőrzés is elfogadható
+            }
+            if (tipus.length == 0) {
+                alert("Válasszon egy lehetőséget a rádiógombok segítségével");
+                return;
+            }
+            const eredmeny = document.getElementById('eredmeny');
+
+            if (tipus == "kisbetus") {
+                eredmeny.innerHTML = szoveg.toLowerCase();
+            } else {
+                eredmeny.innerHTML = szoveg.toUpperCase();
+            }
+        }
+    </script>
+</body>
+
+</html>

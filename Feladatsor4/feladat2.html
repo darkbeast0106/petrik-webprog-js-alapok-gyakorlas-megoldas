@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladat</title>
+</head>
+
+<body>
+    <form name="regisztracios_urlap">
+        <div>
+            <label for="felhasznalonev">Felhasználónév:</label>
+            <input type="text" name="felhasznalonev" id="felhasznalonev" placeholder="Felhasználónév">
+        </div>
+        <div>
+            <label for="jelszo">Jelszó:</label>
+            <input type="password" name="jelszo" id="jelszo" placeholder="Jelszó">
+        </div>
+        <div>
+            <label for="jelszo_megerosit">Jelszó megerősítése:</label>
+            <input type="password" name="jelszo_megerosit" id="jelszo_megerosit" placeholder="Jelszó megerősítése">
+        </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" placeholder="E-mail">
+        </div>
+        <div>
+            <label for="szul_datum">Születési dátum:</label>
+            <input type="date" name="szul_datum" id="szul_datum" placeholder="Születési dátum">
+        </div>
+        <button type="button" onclick="regisztracio();">Regisztráció</button>
+    </form>
+    <script>
+        function regisztracio() {
+            const felhasznalonev = document.forms.regisztracios_urlap.felhasznalonev.value;
+            const jelszo = document.forms.regisztracios_urlap.jelszo.value;
+            const jelszo_megerosit = document.forms.regisztracios_urlap.jelszo_megerosit.value;
+            const email = document.forms.regisztracios_urlap.email.value;
+            const szul_datum = document.forms.regisztracios_urlap.szul_datum.value;
+
+            let helyes = true;
+
+            if (felhasznalonev.length < 5 || felhasznalonev.length > 16) {
+                alert("A felhasználónév hossza 5 és 16 karakter közé kell, hogy essen");
+                helyes = false;
+            }
+
+            if (jelszo.length < 5) {
+                alert("A jelszó minimum 5 karakter hosszú kell, hogy legyen")
+                helyes = false
+            }
+
+            const jelszo_regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/;
+            if (!jelszo_regex.test(jelszo)) {
+                alert("A jelszónak tartalmaznia kell legalább egy: kisbetűt, nagybetűt, számot és speciális karaktert");
+                helyes = false;
+            }
+
+            if (jelszo !== jelszo_megerosit) {
+                alert("A jelszavaknak egyeznie kell")
+                helyes = false
+            }
+
+            const email_regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if (!email_regex.test(email)) {
+                alert("Érvénytelen e-mail címet adott meg");
+                helyes = false;
+            }
+
+            if (helyes) {
+                const reg_adatok = {
+                    felhasznalonev: felhasznalonev,
+                    jelszo: jelszo,
+                    email: email,
+                    szul_datum: szul_datum
+                }
+                console.log(reg_adatok);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladat</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="bootstrap.bundle.min.js"></script>
+    <style>
+        tr th {
+            text-align: center;
+            width: 20%;
+        }
+        
+        tr th:nth-child(1) {
+            text-align: left;
+        }
+        
+        label.form-label, label.form-check-label {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form name="jelentkezes">
+            <h1>Petrik E-sport Alapítvány jelentkezés</h1>
+            <div class="mb-3">
+                <label for="nev_input" class="form-label">Név:</label>
+                <input class="form-control" type="text" id="nev_input" name="nev" placeholder="Név">
+            </div>
+            <div class="mb-3">
+                <label for="email_input" class="form-label">E-mail:</label>
+                <input class="form-control" type="email" id="email_input" name="email" placeholder="E-mail">
+            </div>
+            <div class="mb-3">
+                <label for="szul_datum_input" class="form-label">Születési dátum:</label>
+                <input class="form-control" type="date" id="szul_datum_input" name="szul_datum" placeholder="Születési dátum">
+            </div>
+            <div class="mb-3">
+                <label for="jatek_ora_input" class="form-label">Átalagosan hány órát tölt naponta számítógépes játékokkal:</label>
+                <input class="form-control" type="number" min="0.5" max="16" id="jatek_ora_input" name="jatek_ora" placeholder="Átalagosan hány órát tölt naponta számítógépes játékokkal">
+            </div>
+            <div class="mb-3">
+                <label for="ertekeles_tablazat" class="form-label">Hogyan értékelné a képességeit az alábbi játék fajtákban:</label>
+                <table id="ertekeles_tablazat" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nem játszok ilyennel</th>
+                            <th>Kezdő</th>
+                            <th>Haladó</th>
+                            <th>Profi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>FPS</th>
+                            <th><input class="form-check-input" type="radio" name="fps" value="0"></th>
+                            <th><input class="form-check-input" type="radio" name="fps" value="1"></th>
+                            <th><input class="form-check-input" type="radio" name="fps" value="2"></th>
+                            <th><input class="form-check-input" type="radio" name="fps" value="3"></th>
+                        </tr>
+                        <tr>
+                            <th>ARPG</th>
+                            <th><input class="form-check-input" type="radio" name="arpg" value="0"></th>
+                            <th><input class="form-check-input" type="radio" name="arpg" value="1"></th>
+                            <th><input class="form-check-input" type="radio" name="arpg" value="2"></th>
+                            <th><input class="form-check-input" type="radio" name="arpg" value="3"></th>
+                        </tr>
+                        <tr>
+                            <th>MOBA</th>
+                            <th><input class="form-check-input" type="radio" name="moba" value="0"></th>
+                            <th><input class="form-check-input" type="radio" name="moba" value="1"></th>
+                            <th><input class="form-check-input" type="radio" name="moba" value="2"></th>
+                            <th><input class="form-check-input" type="radio" name="moba" value="3"></th>
+                        </tr>
+                        <tr>
+                            <th>RTS</th>
+                            <th><input class="form-check-input" type="radio" name="rts" value="0"></th>
+                            <th><input class="form-check-input" type="radio" name="rts" value="1"></th>
+                            <th><input class="form-check-input" type="radio" name="rts" value="2"></th>
+                            <th><input class="form-check-input" type="radio" name="rts" value="3"></th>
+                        </tr>
+                        <tr>
+                            <th>MMO-RPG / PVE</th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pve" value="0"></th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pve" value="1"></th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pve" value="2"></th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pve" value="3"></th>
+                        </tr>
+                        <tr>
+                            <th>MMO-RPG / PVP</th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pvp" value="0"></th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pvp" value="1"></th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pvp" value="2"></th>
+                            <th><input class="form-check-input" type="radio" name="mmo_pvp" value="3"></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mb-3">
+                <label for="megjegyzes_input" class="form-label">Megjegyzés:</label>
+                <textarea name="megjegyzes" id="megjegyzes_input" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <input type="checkbox" id="feltetelek_input" name="feltetelek" class="form-check-input">
+                <label for="feltetelek_input" class="form-check-label">Elolvastam és elfogadom a <a href="#feltetelek_input">feltételeket</a></label>
+            </div>
+            <button class="btn btn-secondary" type="button" id="jelentkezes_gomb">Jelentkezés</button>
+        </form>
+    </div>
+    <script>
+        const jelentkezes_gomb = document.getElementById('jelentkezes_gomb');
+        jelentkezes_gomb.addEventListener("click", jelentkezes);
+        function jelentkezes() {
+            const nev = document.forms.jelentkezes.nev.value;
+            const email = document.forms.jelentkezes.email.value;
+            const szul_datum = document.forms.jelentkezes.szul_datum.value;
+            const jatek_ora = document.forms.jelentkezes.jatek_ora.value;
+
+            const fps = document.forms.jelentkezes.fps.value;
+            const arpg = document.forms.jelentkezes.arpg.value;
+            const moba = document.forms.jelentkezes.moba.value;
+            const rts = document.forms.jelentkezes.rts.value;
+            const mmo_pve = document.forms.jelentkezes.mmo_pve.value;
+            const mmo_pvp = document.forms.jelentkezes.mmo_pvp.value;
+
+            const megjegyzes = document.forms.jelentkezes.megjegyzes.value;
+            const feltetelek = document.forms.jelentkezes.feltetelek.checked;
+
+            if (nev.length === 0) {
+                alert("Név megadása kötelező");
+                return;
+            }
+            if (email.length === 0) {
+                alert("E-mail megadása kötelező");
+                return;
+            }
+
+            const email_regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if (!email_regex.test(email)) {
+                alert("Érvénytelen e-mail címet adott meg");
+                return;
+            }
+
+            if (szul_datum.length === 0) {
+                alert("Születési dátum megadása kötelező");
+                return;
+            }
+            if (jatek_ora.length === 0) {
+                alert("Játékkal töltött órák számának megadása kötelező");
+                return;
+            }
+
+            if (jatek_ora < 0.5 || jatek_ora > 16) {
+                alert("Játékkal töltött órák számának 0.5 és 16 közé kell esnie");
+                return;
+            }
+
+            if (fps.length === 0 || arpg.length === 0 || moba.length === 0 || rts.length === 0 || mmo_pve.length === 0 || mmo_pvp.length === 0) {   
+                alert("A táblázat minden sorából válasszon egyet");
+                return;
+            }
+
+            if (!feltetelek) {
+                alert("Feltételek elfogadása kötelező");
+                return;
+            }
+
+            const adatok = {
+                nev: nev,
+                email: email,
+                szul_datum: szul_datum,
+                jatek_ora: jatek_ora,
+                megjegyzes: megjegyzes,
+                jatek_kepesseg: {
+                    fps: fps,
+                    arpg: arpg,
+                    moba: moba,
+                    rts: rts,
+                    mmo_pve: mmo_pve,
+                    mmo_pvp: mmo_pvp,
+                }
+            }
+            console.log(adatok);
+        }
+    </script>
+</body>
+
+</html>
